@@ -12,6 +12,12 @@
 
 <?php wp_footer() ?>
 </body>
-<?php wp_body_open() ?>
+
+<?php
+if (function_exists('wp_body_open')) {
+    #for backward compatability
+    wp_body_open();
+}
+?>
 
 </html>
