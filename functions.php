@@ -6,6 +6,13 @@
  * @package Auila
  */
 
+if (!defined('AQUILA_DIR_PATH')) {
+    define('AQUILA_DIR_PATH', untrailingslashit(get_template_directory()));
+}
+
+
+require_once AQUILA_DIR_PATH . '/inc/helpers/autoloader.php';
+
 function aquila_enqueue_scripts()
 {
     //register styles
@@ -20,7 +27,7 @@ function aquila_enqueue_scripts()
     wp_register_style(
         'bootstrap-css', //handle
         get_template_directory_uri() . '/assets/src/library/css/bootstrap.min.css', //stylesheet path
-        ['jquery'], //dependency array
+        [], //dependency array
         '4.5.3', //dynamic version number based on modify time
         'all' // screen sizes
     );
@@ -29,13 +36,25 @@ function aquila_enqueue_scripts()
     wp_register_script(
         'main-js', //handle
         get_template_directory_uri() . '/assets/main.js', //path
+        [],
         filemtime(get_template_directory() . '/assets/main.js'), //dynamic ver number
         true // include in footer
     );
 
+    //Popper JS
+    wp_register_script(
+        'popper-js', //handle
+        get_template_directory_uri() . '/assets/src/library/js/popper.min.js', //path
+        [],
+        '2.11.6 ', // ver number
+        true // include in footer
+    );
+
+    //bootstrapJS
     wp_register_script(
         'bootstrap-js', //handle
-        get_template_directory_uri() . '/assets/src/library/bootstrap.min.js', //path
+        get_template_directory_uri() . '/assets/src/library/js/bootstrap.min.js', //path
+        ['jquery', 'popper-js'],
         '4.5.3', //dynamic ver number
         true // include in footer
     );

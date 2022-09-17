@@ -8,16 +8,13 @@
 ?>
 
 
+
+
 <footer>Theme Footer</footer>
+</div>
+</div>
 
 <?php wp_footer() ?>
 </body>
-
-<?php
-if (function_exists('wp_body_open')) {
-    #for backward compatability
-    wp_body_open();
-}
-?>
 
 </html>
